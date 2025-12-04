@@ -34,8 +34,8 @@ export const ThankyouPage = () => {
 					className='text-4xl font-bold self-center tracking-tighter transition-all md:text-5xl'
 				>
 					<p>
-						Celulares
-						<span className='text-cyan-600'>Baratos</span>
+						Tech
+						<span className='text-cyan-600'>Store</span>
 					</p>
 				</Link>
 			</header>
@@ -53,22 +53,22 @@ export const ThankyouPage = () => {
 					<h3 className='font-medium'>Tu pedido está confirmado</h3>
 
 					<p className='text-sm'>
-						Gracias por realizar tu compra en Celularesbaratos. Para
+						Gracias por realizar tu compra en TechStore. Para
 						realizar la transferencia te compartimos los siguientes
 						datos
 					</p>
 
-					<div className='space-y-0.5 text-sm'>
-						<p>BANCO PICHINCHA</p>
-						<p>Razón Social: CelularesBaratos</p>
-						<p>RUC: 123456789000</p>
-						<p>Tipo de cuenta: Corriente</p>
-						<p>Número de cuenta: 1234567890</p>
+					<div className='pt-1 space-y-1.5'>
+						<p><strong className='text-gray-900'>Banco:</strong> Bancolombia</p>
+						<p><strong className='text-gray-900'>Titular:</strong> TechStore</p>
+						<p><strong className='text-gray-900'>NIT:</strong> 901234567-8</p>
+						<p><strong className='text-gray-900'>Tipo de cuenta:</strong> Ahorros</p>
+						<p><strong className='text-gray-900'>Número de cuenta:</strong> 12345678901</p>
 					</div>
 
 					<p className='text-sm'>
 						Una vez realizada la transferencia, comparte tu
-						comprobante a ventas@celularesbaratos.com para procesarla
+						comprobante a techstore2507@gmail.com para procesarla
 						y hacerte la entrega de tu dispositivo a domicilio.
 					</p>
 				</div>
@@ -78,7 +78,7 @@ export const ThankyouPage = () => {
 
 					<div className='flex flex-col gap-5'>
 						<ul className='space-y-3'>
-							{data.orderItems.map((item, index) => (
+							{data.orderItems.map((item: typeof data.orderItems[0], index: number) => (
 								<li
 									key={index}
 									className='flex justify-between items-center gap-3'
@@ -160,7 +160,7 @@ export const ThankyouPage = () => {
 					</p>
 
 					<Link
-						to='/celulares'
+						to='/productos'
 						className='text-white bg-black py-4 text-sm rounded-md px-5 tracking-tight font-semibold'
 					>
 						Seguir comprando

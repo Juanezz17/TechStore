@@ -30,11 +30,11 @@ export const router = createBrowserRouter([
 				element: <HomePage />,
 			},
 			{
-				path: 'celulares',
+				path: 'productos',
 				element: <CellPhonesPage />,
 			},
 			{
-				path: 'celulares/:slug',
+				path: 'productos/:slug',
 				element: <CellPhonePage />,
 			},
 			{

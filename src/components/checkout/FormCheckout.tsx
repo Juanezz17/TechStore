@@ -47,10 +47,7 @@ export const FormCheckout = () => {
 		return (
 			<div className='flex flex-col gap-3 h-screen items-center justify-center'>
 				<ImSpinner2 className='animate-spin h-10 w-10' />
-
-				<p className='text-sm font-medium'>
-					Estamos procesando tu pedido
-				</p>
+				<p className='text-sm font-medium'>Estamos procesando tu pedido</p>
 			</div>
 		);
 	}
@@ -58,8 +55,10 @@ export const FormCheckout = () => {
 	return (
 		<div>
 			<form className='flex flex-col gap-6' onSubmit={onSubmit}>
+
+				{/* SECCIÓN DE ENTREGA */}
 				<div className='flex flex-col gap-3'>
-					<h3 className='text-lg font-semibold tracking-normal'>
+					<h3 className='text-lg font-semibold tracking-normal text-gray-900'>
 						Entrega
 					</h3>
 
@@ -81,7 +80,7 @@ export const FormCheckout = () => {
 						register={register}
 						errors={errors}
 						name='state'
-						placeholder='Estado / Provincia'
+						placeholder='Departamento / Estado'
 					/>
 
 					<InputAddress
@@ -102,49 +101,61 @@ export const FormCheckout = () => {
 						className='border border-slate-200 rounded-md p-3'
 						{...register('country')}
 					>
-						<option value='Ecuador'>Ecuador</option>
+						<option value='Colombia'>Colombia</option>
 					</select>
 				</div>
 
+				{/* MÉTODO DE ENVÍO */}
 				<div className='flex flex-col gap-3'>
-					<p className='text-sm font-medium'>Métodos de envío</p>
+					<p className='text-sm font-medium text-gray-800'>Métodos de envío</p>
 
-					<div className='flex justify-between items-center text-sm border border-slate-600 bg-stone-100 py-4 rounded-md px-6'>
-						<span className='font-normal'>Standard</span>
-						<span className='font-semibold'>Gratis</span>
+					<div className='flex justify-between items-center text-sm border border-gray-300 bg-white py-4 rounded-md px-6 shadow-sm'>
+						<span className='font-normal text-gray-700'>Envío estándar</span>
+						<span className='font-semibold text-gray-900'>Gratis</span>
 					</div>
 				</div>
 
+				{/* PAGO POR TRANSFERENCIA */}
 				<div className='flex flex-col'>
-					<div className='flex justify-between items-center text-sm border border-slate-600 bg-stone-100 py-4 rounded-ss-md rounded-se-md px-6'>
-						<span>Depósito Bancario</span>
+					<div className='flex justify-between items-center text-sm border border-gray-300 bg-gray-50 py-4 rounded-t-md px-6'>
+						<span className='font-medium text-gray-800'>Depósito Bancario</span>
 					</div>
 
-					<div className='bg-stone-100 text-[13px] p-5 space-y-0.5 border border-gray-200 rounded-es-md rounded-ee-md'>
-						<p>Compra a traves de transferencia bancaria</p>
-						<p>BANCO PICHINCHA</p>
-						<p>Razón Social: CelularesBaratos</p>
-						<p>RUC: 123456789000</p>
-						<p>Tipo de cuenta: Corriente</p>
-						<p>Número de cuenta: 1234567890</p>
-						<p>
-							La información será compartida nuevamente una vez que se
-							haya finalizado la compra
+					<div className='bg-white text-[13px] p-5 space-y-2 border border-gray-300 border-t-0 rounded-b-md shadow-sm'>
+						<p className='text-gray-700 leading-5'>
+							Realiza el pago mediante transferencia bancaria a la siguiente cuenta:
+						</p>
+
+						<div className='pt-1 space-y-1.5'>
+							<p><strong className='text-gray-900'>Banco:</strong> Bancolombia</p>
+							<p><strong className='text-gray-900'>Titular:</strong> TechStore</p>
+							<p><strong className='text-gray-900'>NIT:</strong> 901234567-8</p>
+							<p><strong className='text-gray-900'>Tipo de cuenta:</strong> Ahorros</p>
+							<p><strong className='text-gray-900'>Número de cuenta:</strong> 12345678901</p>
+						</div>
+
+						<p className='text-gray-600 text-[12px] pt-2 leading-4'>
+							Una vez finalizada la compra recibirás un correo con esta información
+							y los pasos para confirmar tu pago.
 						</p>
 					</div>
 				</div>
 
+				{/* RESUMEN DEL PEDIDO */}
 				<div className='flex flex-col gap-6'>
-					<h3 className='font-semibold text-3xl'>
+					<h3 className='font-semibold text-2xl text-gray-900'>
 						Resumen del pedido
 					</h3>
 
-					<ItemsCheckout />
+					<div className='bg-white border border-gray-300 rounded-md shadow-sm p-4'>
+						<ItemsCheckout />
+					</div>
 				</div>
 
+				{/* BOTÓN DE ENVÍO */}
 				<button
 					type='submit'
-					className='bg-black text-white py-3.5 font-bold tracking-wide rounded-md mt-2'
+					className='bg-black hover:bg-gray-900 text-white py-3.5 font-semibold tracking-wide rounded-md mt-2 transition-all shadow-sm'
 				>
 					Finalizar Pedido
 				</button>

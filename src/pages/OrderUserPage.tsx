@@ -51,7 +51,7 @@ export const OrderUserPage = () => {
 					</thead>
 
 					<tbody>
-						{order.orderItems.map((product, index) => (
+						{order.orderItems.map((product: typeof order.orderItems[number], index: number) => (
 							<tr key={index} className='border-b border-gray-200'>
 								<td className='p-4 font-medium tracking-tighter flex gap-3 items-center'>
 									<img

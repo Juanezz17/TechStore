@@ -9,7 +9,7 @@ export const Footer = () => {
 				to='/'
 				className={`text-2xl font-bold tracking-tighter transition-all text-white flex-1`}
 			>
-				Celulares Baratos
+				TechStore 
 			</Link>
 
 			<div className='flex flex-col gap-4 flex-1'>
@@ -39,7 +39,7 @@ export const Footer = () => {
 				</p>
 
 				<nav className='flex flex-col gap-2 text-xs font-medium'>
-					<Link to='/celulares'>Productos</Link>
+					<Link to='/Productos'>Productos</Link>
 					<Link to='#' className='text-slate-300 hover:text-white'>
 						Políticas de privacidad
 					</Link>
@@ -55,7 +55,7 @@ export const Footer = () => {
 				</p>
 
 				<p className='text-xs leading-6'>
-					No te pierdas las novedades que CelularesBaratos tiene para
+					No te pierdas las novedades que TechStore tiene para
 					ti.
 				</p>
 

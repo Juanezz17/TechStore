@@ -225,7 +225,7 @@ export const deleteProduct = async (productId: string) => {
 	if (productImages.images.length > 0) {
 		const folderName = productId;
 
-		const paths = productImages.images.map(image => {
+		const paths = productImages.images.map((image: string) => {
 			const fileName = image.split('/').pop();
 			return `${folderName}/${fileName}`;
 		});
@@ -282,7 +282,7 @@ export const updateProduct = async (
 
 	// 3.1 Identificar las imágenes que han sido eliminadas
 	const imagesToDelete = existingImages.filter(
-		image => !validImages.includes(image)
+		(image: string) => !validImages.includes(image)
 	);
 
 	// 3.2 Obtener los paths de los archivos a eliminar

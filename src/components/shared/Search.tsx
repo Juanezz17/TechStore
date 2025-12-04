@@ -54,7 +54,7 @@ export const Search = () => {
 								<button
 									className='flex items-center gap-3'
 									onClick={() => {
-										navigate(`/celulares/${product.slug}`);
+										navigate(`/productos/${product.slug}`);
 										closeSheet();
 									}}
 								>

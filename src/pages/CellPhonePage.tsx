@@ -93,7 +93,7 @@ export const CellPhonePage = () => {
 	useEffect(() => {
 		if (selectedColor && selectedStorage) {
 			const variant = product?.variants.find(
-				variant =>
+				(variant: VariantProduct) =>
 					variant.color === selectedColor &&
 					variant.storage === selectedStorage
 			);
@@ -188,7 +188,7 @@ export const CellPhonePage = () => {
 
 					{/* Características */}
 					<ul className='space-y-2 ml-7 my-10'>
-						{product.features.map(feature => (
+						{product.features.map((feature: string) => (
 							<li
 								key={feature}
 								className='text-sm flex items-center gap-2 tracking-tight font-medium'
@@ -236,7 +236,7 @@ export const CellPhonePage = () => {
 									value={selectedStorage || ''}
 									onChange={e => setSelectedStorage(e.target.value)}
 								>
-									{colors[selectedColor].storages.map(storage => (
+									{colors[selectedColor].storages.map((storage: string) => (
 										<option value={storage} key={storage}>
 											{storage}
 										</option>

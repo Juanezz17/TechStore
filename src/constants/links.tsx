@@ -15,8 +15,8 @@ export const navbarLinks = [
 	},
 	{
 		id: 2,
-		title: 'Celulares',
-		href: '/celulares',
+		title: 'Productos',
+		href: '/productos',
 	},
 	{
 		id: 3,

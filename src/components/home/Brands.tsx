@@ -12,8 +12,8 @@ const brands = [
 		alt: 'Xiaomi',
 	},
 	{
-		image: '/img/brands/realme-logo.webp',
-		alt: 'Realme',
+		image: '/img/brands/redragon-logo.png',
+		alt: 'Redragon',
 	},
 	{
 		image: '/img/brands/huawei-logo.png',
@@ -32,8 +32,8 @@ export const Brands = () => {
 			<h2 className='font-bold text-2xl'>Marcas que disponemos</h2>
 
 			<p className='w-2/3 text-center text-sm md:text-base'>
-				Tenemos lo más moderno en tecnología y los últimos modelos de
-				celulares disponibles
+				Tenemos lo más moderno en tecnología y los últimos modelos del
+				mercado disponibles
 			</p>
 
 			<div className='grid grid-cols-3 gap-6 mt-8 items-center md:grid-cols-6'>

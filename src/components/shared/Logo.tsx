@@ -13,8 +13,8 @@ export const Logo = ({ isDashboard }: Props) => {
 			}`}
 		>
 			<p className='hidden lg:block'>
-				Celulares
-				<span className='text-cyan-600'>Baratos</span>
+				Tech
+				<span className='text-cyan-600'>Store</span>
 			</p>
 
 			<p className='flex text-4xl lg:hidden'>
