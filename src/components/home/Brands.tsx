@@ -21,8 +21,8 @@ const brands = [
 	},
 
 	{
-		image: '/img/brands/honor-logo.png',
-		alt: 'Honor',
+		image: '/img/brands/pslogo.png',
+		alt: 'PS',
 	},
 ];
 

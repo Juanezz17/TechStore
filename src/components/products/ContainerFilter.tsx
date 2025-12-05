@@ -5,9 +5,23 @@ const availableBrands = [
 	'Apple',
 	'Huawei',
 	'Xiaomi',
-	'Realme',
-	'Honor',
+	'Sony',
 	'Redragon',
+	'JBL',
+	'Motorola',
+	'Elgato',
+	'GoPro',
+	'Canon',
+	'ASUS',
+	'HyperX',
+	'Logitech',
+	'Dell',
+	'Nintendo',
+	'Acer',
+	'Microsoft',
+	'Razer',
+	'HP',
+
 ];
 
 interface Props {
