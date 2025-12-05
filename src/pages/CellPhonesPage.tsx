@@ -53,7 +53,7 @@ export const CellPhonesPage = () => {
 							))}
 						</div>
 
-						{/* TODO: Paginación */}
+						{/* Todo Paginación */}
 						<Pagination
 							totalItems={totalProducts}
 							page={page}
