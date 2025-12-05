@@ -25,49 +25,57 @@ export const UploaderImages = ({
 }: Props) => {
 	const [images, setImages] = useState<ImagePreview[]>([]);
 
-	// Verificar si hay errores con las imágenes
+	// Observa las imágenes del formulario
 	const formImages = watch('images');
 
-	// Cargar imágenes existentes si las hay en el formulario
+	// ✅ Cargar imágenes existentes (cuando vienen desde BD)
 	useEffect(() => {
-		if (formImages && formImages.length > 0 && images.length == 0) {
-			const existingImages = formImages.map(url => ({
-				previewUrl: url,
+		if (formImages && formImages.length > 0 && images.length === 0) {
+			const existingImages: ImagePreview[] = formImages.map(img => ({
+				previewUrl:
+					typeof img === 'string'
+						? img
+						: URL.createObjectURL(img),
+				file: typeof img === 'string' ? undefined : img,
 			}));
-			setImages(existingImages);
 
-			// Actualizar el valor del formulario
+			setImages(existingImages);
 			setValue('images', formImages);
 		}
 	}, [formImages, images.length, setValue]);
 
+	// ✅ Cuando el usuario selecciona nuevas imágenes
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>
 	) => {
-		if (e.target.files) {
-			const newImages = Array.from(e.target.files).map(file => ({
-				file,
-				previewUrl: URL.createObjectURL(file),
-			}));
+		if (!e.target.files) return;
 
-			const updatedImages = [...images, ...newImages];
+		const newImages: ImagePreview[] = Array.from(
+			e.target.files
+		).map(file => ({
+			file,
+			previewUrl: URL.createObjectURL(file),
+		}));
 
-			setImages(updatedImages);
+		const updatedImages = [...images, ...newImages];
 
-			setValue(
-				'images',
-				updatedImages.map(img => img.file || img.previewUrl)
-			);
-		}
+		setImages(updatedImages);
+
+		// ✅ SOLO guardamos FILES en el formulario
+		setValue(
+			'images',
+			updatedImages.map(img => img.file!)
+		);
 	};
 
+	// ✅ Eliminar imagen
 	const handleRemoveImage = (index: number) => {
 		const updatedImages = images.filter((_, i) => i !== index);
 		setImages(updatedImages);
 
 		setValue(
 			'images',
-			updatedImages.map(img => img.file || img.previewUrl)
+			updatedImages.map(img => img.file!)
 		);
 	};
 
@@ -81,7 +89,7 @@ export const UploaderImages = ({
 				className='block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200'
 			/>
 
-			<div className='grid grid-cols-4 lg:grid-cols-2 gap-4'>
+			<div className='grid grid-cols-4 lg:grid-cols-2 gap-4 mt-3'>
 				{images.map((image, index) => (
 					<div key={index}>
 						<div className='border border-gray-200 w-full h-20 rounded-md p-1 relative lg:h-28'>
@@ -90,6 +98,7 @@ export const UploaderImages = ({
 								alt={`Preview ${index}`}
 								className='rounded-md w-full h-full object-contain'
 							/>
+
 							<button
 								type='button'
 								onClick={() => handleRemoveImage(index)}

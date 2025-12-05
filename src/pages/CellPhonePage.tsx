@@ -154,10 +154,11 @@ export const CellPhonePage = () => {
 
 	if (isLoading) return <Loader />;
 
-	if (!product || isError)
+	// ✅ ✅ ✅ AQUÍ VA LA ÚNICA CORRECCIÓN AGREGADA
+	if (!product || isError || !product.variants || product.variants.length === 0)
 		return (
 			<div className='flex justify-center items-center h-[80vh]'>
-				<p>Producto no encontrado</p>
+				<p>Producto no disponible</p>
 			</div>
 		);
 
