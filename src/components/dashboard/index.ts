@@ -1,6 +1,6 @@
 export * from './Sidebar';
 
-// ORDENES
+// ordenes
 export * from './orders/TableOrdersAdmin';
 
 // PRODUCTOS
