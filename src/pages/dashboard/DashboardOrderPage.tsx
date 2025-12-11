@@ -47,7 +47,7 @@ export const DashboardOrderPage = () => {
 					</thead>
 
 					<tbody className='[&_tr:last-child]:border-0'>
-						{order.orderItems.map((item, index) => (
+						{order.orderItems.map((item: any, index: number) => (
 							<tr key={index} className='border-b border-gray-200'>
 								<td className='p-4 font-medium tracking-tighter flex gap-3 items-center'>
 									<img

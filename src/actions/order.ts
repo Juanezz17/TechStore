@@ -220,7 +220,7 @@ export const getOrderById = async (orderId: number) => {
 			postalCode: order.addresses?.postal_code,
 			country: order.addresses?.country,
 		},
-		orderItems: order.order_items.map(item => ({
+		orderItems: order.order_items.map((item: any) => ({
 			quantity: item.quantity,
 			price: item.price,
 			color_name: item.variants?.color_name,
@@ -298,7 +298,7 @@ export const getOrderByIdAdmin = async (id: number) => {
 			postalCode: order.addresses?.postal_code,
 			country: order.addresses?.country,
 		},
-		orderItems: order.order_items.map(item => ({
+		orderItems: order.order_items.map((item: any) => ({
 			quantity: item.quantity,
 			price: item.price,
 			color_name: item.variants?.color_name,

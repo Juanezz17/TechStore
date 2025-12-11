@@ -60,7 +60,7 @@ export const FormProduct = ({ titleForm }: Props) => {
 			setValue('images', product.images);
 			setValue(
 				'variants',
-				product.variants.map(v => ({
+				product.variants.map((v: any) => ({
 					id: v.id,
 					stock: v.stock,
 					price: v.price,
