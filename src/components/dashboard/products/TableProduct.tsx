@@ -18,19 +18,18 @@ const tableHeaders = [
 	'',
 ];
 
-export const TableProduct = () => {
-	const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(
-		null
-	);
-	const [selectedVariants, setSelectedVariants] = useState<{
-		[key: string]: number;
-	}>({});
+export const TableProduct = ({ searchTerm }: { searchTerm: string }) => {
+	const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+	const [selectedVariants, setSelectedVariants] = useState<{ [key: string]: number }>({});
 	const [page, setPage] = useState(1);
 
-	const { products, isLoading, totalProducts } = useProducts({
-		page,
-	});
+	const { products, isLoading, totalProducts } = useProducts({ page });
 	const { mutate, isPending } = useDeleteProduct();
+
+	// 🔍 Aplicar filtro client-side
+	const filteredProducts = products?.filter(product =>
+		product.name.toLowerCase().includes(searchTerm.toLowerCase())
+	) ?? [];
 
 	const handleMenuToggle = (index: number) => {
 		if (openMenuIndex === index) {
@@ -40,10 +39,7 @@ export const TableProduct = () => {
 		}
 	};
 
-	const handleVariantChange = (
-		productId: string,
-		variantIndex: number
-	) => {
+	const handleVariantChange = (productId: string, variantIndex: number) => {
 		setSelectedVariants({
 			...selectedVariants,
 			[productId]: variantIndex,
@@ -78,60 +74,44 @@ export const TableProduct = () => {
 							))}
 						</tr>
 					</thead>
+
 					<tbody>
-						{products.map((product, index) => {
-							const selectedVariantIndex =
-								selectedVariants[product.id] ?? 0;
-							const selectedVariant =
-								product.variants[selectedVariantIndex] || {};
+						{filteredProducts.map((product, index) => {
+							const selectedVariantIndex = selectedVariants[product.id] ?? 0;
+							const selectedVariant = product.variants[selectedVariantIndex] || {};
 
 							return (
 								<tr key={index}>
 									<td className='p-4 align-middle sm:table-cell'>
 										<img
-											src={
-												product.images[0] ||
-												'https://ui.shadcn.com/placeholder.svg'
-											}
-											alt='Imagen Product'
+											src={product.images[0] || 'https://ui.shadcn.com/placeholder.svg'}
+											alt='Imagen Producto'
 											loading='lazy'
 											decoding='async'
 											className='w-16 h-16 aspect-square rounded-md object-contain'
 										/>
 									</td>
+
 									<CellTableProduct content={product.name} />
+
 									<td className='p-4 font-medium tracking-tighter'>
 										<select
 											className='border border-gray-300 rounded-md p-1 w-full'
-											onChange={e =>
-												handleVariantChange(
-													product.id,
-													Number(e.target.value)
-												)
-											}
+											onChange={e => handleVariantChange(product.id, Number(e.target.value))}
 											value={selectedVariantIndex}
 										>
-											{product.variants.map(
-												(variant, variantIndex) => (
-													<option
-														key={variant.id}
-														value={variantIndex}
-													>
-														{variant.color_name} - {variant.storage}
-													</option>
-												)
-											)}
+											{product.variants.map((variant: typeof product.variants[0], variantIndex: number) => (
+												<option key={variant.id} value={variantIndex}>
+													{variant.color_name} - {variant.storage}
+												</option>
+											))}
 										</select>
 									</td>
-									<CellTableProduct
-										content={formatPrice(selectedVariant?.price)}
-									/>
-									<CellTableProduct
-										content={(selectedVariant.stock || 0).toString()}
-									/>
-									<CellTableProduct
-										content={formatDate(product.created_at)}
-									/>
+
+									<CellTableProduct content={formatPrice(selectedVariant?.price)} />
+									<CellTableProduct content={(selectedVariant.stock || 0).toString()} />
+									<CellTableProduct content={formatDate(product.created_at)} />
+
 									<td className='relative'>
 										<button
 											className='text-slate-900'
@@ -139,26 +119,20 @@ export const TableProduct = () => {
 										>
 											<FaEllipsis />
 										</button>
+
 										{openMenuIndex === index && (
-											<div
-												className='absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-xl z-10 w-[120px]'
-												role='menu'
-											>
+											<div className='absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-xl z-10 w-[120px]' role='menu'>
 												<Link
 													to={`/dashboard/productos/editar/${product.slug}`}
 													className='flex items-center gap-1 w-full text-left px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100'
 												>
 													Editar
-													<HiOutlineExternalLink
-														size={13}
-														className='inline-block'
-													/>
+													<HiOutlineExternalLink size={13} className='inline-block' />
 												</Link>
+
 												<button
 													className='block w-full text-left px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-100'
-													onClick={() =>
-														handleDeleteProduct(product.id)
-													}
+													onClick={() => handleDeleteProduct(product.id)}
 												>
 													Eliminar
 												</button>
@@ -172,7 +146,7 @@ export const TableProduct = () => {
 				</table>
 			</div>
 
-			{/* Controles de paginación */}
+			{/* Paginación */}
 			<Pagination
 				page={page}
 				setPage={setPage}

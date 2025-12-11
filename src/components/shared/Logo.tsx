@@ -18,8 +18,8 @@ export const Logo = ({ isDashboard }: Props) => {
 			</p>
 
 			<p className='flex text-4xl lg:hidden'>
-				<span className='-skew-x-6'>C</span>
-				<span className='text-cyan-600 skew-x-6'>B</span>
+				<span className='-skew-x-6'>T</span>
+				<span className='text-cyan-600 skew-x-6'>S</span>
 			</p>
 		</Link>
 	);
