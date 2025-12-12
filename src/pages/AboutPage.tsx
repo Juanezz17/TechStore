@@ -6,7 +6,7 @@ export const AboutPage = () => {
 			</h1>
 
 			<img
-				src='https://plus.unsplash.com/premium_photo-1682716270464-9a91cbbcf3b7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWRpZmljaW8lMjBkZSUyMGxhJTIwZW1wcmVzYXxlbnwwfHwwfHx8MA%3D%3D'
+				src='../../../public/img/about.png'
 				alt='Imagen de fondo'
 				className='h-[500px] w-full object-cover'
 			/>
