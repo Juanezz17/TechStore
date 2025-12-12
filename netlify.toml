@@ -1,4 +1,14 @@
-# netlify.toml
+# netlify.toml - Configuración de Netlify para TechStore
+
+# Configuración de build (ajusta según tu proyecto)
+[build]
+  publish = "."  # Carpeta que se publica (si usas una carpeta dist o build, cámbialo)
+  command = ""   # Comando de build si lo necesitas
+
+# ============================================
+# REDIRECCIONES - FORZAR HTTPS
+# ============================================
+# Esto soluciona el problema de "Redirección HTTPS"
 
 [[redirects]]
   from = "http://eccomercetech.netlify.app/*"
@@ -6,11 +16,76 @@
   status = 301
   force = true
 
+# ============================================
+# HEADERS DE SEGURIDAD
+# ============================================
+# Esto mejora la seguridad general del sitio
+
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    # Previene ataques de clickjacking
+    X-Frame-Options = "SAMEORIGIN"
+    
+    # Previene MIME type sniffing
     X-Content-Type-Options = "nosniff"
+    
+    # Habilita protección XSS del navegador
     X-XSS-Protection = "1; mode=block"
+    
+    # Política de referencia
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    
+    # Force HTTPS en el navegador por 1 año
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    
+    # Content Security Policy básico
+    Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://www.googleapis.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https://www.googleapis.com https://api.anthropic.com;"
+    
+    # Permisos del navegador
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Headers específicos para archivos HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Headers para archivos estáticos (CSS, JS, imágenes)
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ============================================
+# CONFIGURACIÓN ADICIONAL (OPCIONAL)
+# ============================================
+
+# Manejo de errores 404
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Prevenir acceso directo a archivos de configuración
+[[redirects]]
+  from = "/.env"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.git/*"
+  to = "/404.html"
+  status = 404
+  force = true
