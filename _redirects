@@ -1,0 +1,5 @@
+# Forzar HTTPS - Soluciona el problema de redirección HTTP a HTTPS
+http://eccomercetech.netlify.app/*  https://eccomercetech.netlify.app/:splat  301!
+
+# Página 404 personalizada (opcional)
+/*  /index.html  200
