@@ -7,7 +7,7 @@ export interface Color {
 	price: number;
 }
 
-export interface VariantProduct 
+export interface VariantProduct {
 	id: string;
 	stock: number;
 	price: number;
